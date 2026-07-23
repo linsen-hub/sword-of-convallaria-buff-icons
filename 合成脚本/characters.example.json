@@ -1,0 +1,9 @@
+{
+  "示例角色名": {
+    "示例符号图.png": [
+      ["green", null, "buff_示例角色名_示例技能.png"],
+      ["goldframe_red", null, "debuff_示例角色名_示例技能.png"],
+      ["green", "green_arrow.png", "buff_示例角色名_示例技能_arrow1.png"]
+    ]
+  }
+}

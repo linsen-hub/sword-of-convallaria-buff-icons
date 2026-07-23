@@ -11,3 +11,7 @@ _preview_tmp*/
 !/角色原图/.gitkeep
 /合成成品/*
 !/合成成品/.gitkeep
+
+# CHARACTERS 映射（角色名/技能名本身来自具体需求表，可能含未发布内容）不进版本
+# 控制，只保留 characters.example.json 这个占位示例
+/合成脚本/characters.json
