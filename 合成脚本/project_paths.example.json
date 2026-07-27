@@ -1,0 +1,7 @@
+{
+  "_说明": "复制这个文件为 project_paths.json（同目录，不进 git），填成你自己项目里的真实路径。项目组的 P4/资源目录路径、角色对照表内容都是各项目私有信息，不写进这个共享工具仓库。",
+  "p4_data_root": "E:\\p4workspace\\你的项目\\Data",
+  "char_csv_relpath": "char/char_hero_cutscene.csv",
+  "asset_path_index": "client/Assets/asset_path.txt",
+  "icon_asset_root": "client/Assets/Textures/icon"
+}

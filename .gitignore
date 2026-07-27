@@ -15,3 +15,7 @@ _preview_tmp*/
 # CHARACTERS 映射（角色名/技能名本身来自具体需求表，可能含未发布内容）不进版本
 # 控制，只保留 characters.example.json 这个占位示例
 /合成脚本/characters.json
+
+# 各项目自己的 P4/资源目录路径（角色内容ID↔资源ID对照表来源）是私有信息，不进
+# 版本控制，只保留 project_paths.example.json 这个占位模板
+/合成脚本/project_paths.json

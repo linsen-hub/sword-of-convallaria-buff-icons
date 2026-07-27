@@ -22,11 +22,15 @@ Buff-Debuff/                （本仓库根目录）
 ├── 角色原图/<角色名>/    该角色原始 1024x1024 白色符号图（或黑/白底不透明图）
 ├── 合成成品/<角色名>/    合成结果 + 预览联系表，脚本自动生成
 └── 合成脚本/
-    ├── composite_buff_icons.py    合成脚本本身，通用逻辑，不含任何角色数据
-    ├── characters.json            实际角色映射，不进 git（可能含未发布内容）
-    └── characters.example.json    占位示例，展示 characters.json 该怎么写
+    ├── composite_buff_icons.py       合成脚本本身，通用逻辑，不含任何角色数据
+    ├── characters.json               实际角色映射，不进 git（可能含未发布内容）
+    ├── characters.example.json       占位示例，展示 characters.json 该怎么写
+    ├── project_paths.json            本项目的 P4/资源目录真实路径，不进 git
+    └── project_paths.example.json    占位模板，展示 project_paths.json 该怎么填
 ```
 脚本内部路径全部相对自身位置，`Buff-Debuff/` 整个文件夹挪到别的机器/目录都能直接跑，不认死绝对路径。角色名、技能名这些具体内容属于各项目自己的需求表数据，不写进脚本或提交到 git——`characters.json` 本地维护，`.gitignore` 已排除它。
+
+同理，角色"内容ID"（如 kelaiya/antige）↔ 游戏资源ID（如 HpapalNovicecardinalFset01）的对照关系来自各项目自己的 P4/资源目录（比如 `Data/char/*.csv`），这类路径和对照表内容也是项目私有信息，不写进这个共享仓库——按 `project_paths.example.json` 复制一份改成 `project_paths.json`，填上你自己项目里的真实路径，具体的对照表内容问用户要或从这些路径现查现用，不要缓存进任何会被提交的文件。
 
 ## 新增一个角色的流程
 1. 把该角色的原始白色符号 PNG 放进 `角色原图/<角色名>/`（透明底或黑/白底不透明都行）。
