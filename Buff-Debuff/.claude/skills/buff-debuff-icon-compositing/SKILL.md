@@ -14,9 +14,9 @@ description: Use when generating Buff/Debuff icon PNGs for 铃兰之剑(Sword of
 - 已有角色要新增底色变体（同一个符号换绿/红底）或箭头角标（单/双层数标记）
 
 ## 目录与脚本
-本技能随这个仓库（`Buff-Debuff/`）一起分发，数据就在仓库根目录下（如果是被复制到了别的项目里、找不到对应目录，问用户）：
+本技能随 `Buff-Debuff/` 这个文件夹一起分发，它是"铃兰之剑图标自动化"这个仓库里的一个子目录（跟 `技能图标/`、`图文技能对照表/`、`最终输出/` 平级，整体流程见 `character-icon-full-pipeline` 技能）。数据就在这个子目录下（如果是被复制到了别的项目里、找不到对应目录，问用户）：
 ```
-Buff-Debuff/                （本仓库根目录）
+Buff-Debuff/
 ├── .claude/skills/buff-debuff-icon-compositing/SKILL.md   本文件
 ├── 底图模板/            底色/金框/箭头角标，所有角色共用，不要改
 ├── 角色原图/<角色名>/    该角色原始 1024x1024 白色符号图（或黑/白底不透明图）
