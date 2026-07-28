@@ -1,21 +1,49 @@
-# PSD 源文件体积太大（单个 100MB+），不进版本控制；本地保留即可，跑合成脚本不需要它们
-*.psd
+# 这个仓库只跟踪"铃兰之剑图标自动化"工具链本身，项目文档/旧 Brief 工具源码/
+# Jira 导出等不进版本控制。白名单模式：先全部忽略，再逐个放行需要的文件夹。
+/*
+!/Buff-Debuff
+!/技能图标
+!/图文技能对照表
+!/最终输出
+!/.gitignore
+!/.claude
 
+# ---- Buff-Debuff ----
+# PSD 源文件体积太大（单个 100MB+），不进版本控制；本地保留即可
+Buff-Debuff/**/*.psd
 # 临时预览/调试产物
-_preview_tmp*/
-*_预览放大.png
+Buff-Debuff/**/_preview_tmp*/
+Buff-Debuff/**/*_预览放大.png
+# 角色专属内容（原图/合成成品）可能含未发布游戏素材，只保留目录结构占位
+/Buff-Debuff/角色原图/*
+!/Buff-Debuff/角色原图/.gitkeep
+/Buff-Debuff/合成成品/*
+!/Buff-Debuff/合成成品/.gitkeep
+# CHARACTERS 映射、项目私有路径配置，本地维护，只保留 *.example.json 占位模板
+/Buff-Debuff/合成脚本/characters.json
+/Buff-Debuff/合成脚本/project_paths.json
 
-# 角色专属内容（原图/合成成品）可能含未发布游戏素材，不进这个通用工具仓库；
-# 只保留目录结构（.gitkeep），本地照常生成/使用，不会被提交
-/角色原图/*
-!/角色原图/.gitkeep
-/合成成品/*
-!/合成成品/.gitkeep
+# ---- 技能图标 ----
+# AI 定稿原图 + 规范化成品都是角色专属内容，只保留目录结构占位
+/技能图标/角色原图/*
+!/技能图标/角色原图/.gitkeep
+/技能图标/合成成品/*
+!/技能图标/合成成品/.gitkeep
+# 角色映射本地维护，只保留 *.example.json 占位模板
+/技能图标/处理脚本或素材/skill_characters.json
 
-# CHARACTERS 映射（角色名/技能名本身来自具体需求表，可能含未发布内容）不进版本
-# 控制，只保留 characters.example.json 这个占位示例
-/合成脚本/characters.json
+# ---- 图文技能对照表 ----
+# 每个角色的产物图本身就是把技能名/机制烧进图片里，属于角色专属内容。用
+# "先挡住这一层所有条目、再逐个放行固定不变的几个"，这样新增角色文件夹不用
+# 改这个文件，自动被挡住；固定要跟踪的文件/目录显式放行。
+/图文技能对照表/*
+!/图文技能对照表/generate_comparison_chart.py
+!/图文技能对照表/.gitkeep
+!/图文技能对照表/labels
+# labels 目录已放行，里面具体角色的 json 数据本地维护，只保留占位模板
+/图文技能对照表/labels/*.json
+!/图文技能对照表/labels/_example.json
 
-# 各项目自己的 P4/资源目录路径（角色内容ID↔资源ID对照表来源）是私有信息，不进
-# 版本控制，只保留 project_paths.example.json 这个占位模板
-/合成脚本/project_paths.json
+# ---- 最终输出 ----
+# 打包产物是前面三步内容的汇总，同样是角色专属内容，不进版本控制
+/最终输出/*/

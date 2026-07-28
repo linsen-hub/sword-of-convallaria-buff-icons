@@ -1,0 +1,6 @@
+[
+  {"label": "个性·示例个性", "source": "skill", "file": "unitpersonality_示例角色_示例.png"},
+  {"label": "技能·示例技能", "source": "skill", "file": "icon_skill_示例角色_示例.png"},
+  {"label": "BUFF·示例buff", "source": "buff", "file": "buff_示例角色_示例.png"},
+  {"label": "DEBUFF·示例debuff", "source": "buff", "file": "debuff_示例角色_示例.png"}
+]
