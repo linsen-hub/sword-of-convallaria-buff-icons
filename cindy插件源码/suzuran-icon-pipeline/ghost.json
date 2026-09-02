@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 3,
+  "minCindyVersion": "1.0.0",
+  "id": "suzuran-icon-pipeline",
+  "name": "铃兰图标流水线",
+  "description": "铃兰之剑角色图标流水线：技能图标规范化、Buff/Debuff 合成、图文对照表、汇总打包。",
+  "whenToUse": "需要把角色原图做成游戏图标时使用：技能/个性图标规范化成 128x128 圆形成品、Buff/Debuff 符号合成到底图卡片、生成图文对照表核对、把三者产物汇总打包交付。也用于排查成品圆大小不一或圆周白边。",
+  "version": "1.0.0",
+  "kind": "chip",
+  "entry": "main.js",
+  "icon": "assets/icon.png",
+  "tools": [
+    {
+      "name": "check_env",
+      "description": "自检运行环境：确认能找到 Python 和 pillow/numpy/scipy，确认项目目录结构和圆形通道贴图是否就位。跑其它工具报错时先用它定位。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "project_dir": {
+            "type": "string",
+            "description": "项目根目录绝对路径（含 技能图标/、Buff-Debuff/ 等子目录）。不传则用当前工作目录。"
+          }
+        }
+      }
+    },
+    {
+      "name": "normalize_skill_icons",
+      "description": "技能/个性图标规范化：读 技能图标/角色原图/<角色>/ 下的定稿，按 圆形通道贴图.png 里圆的实际大小自动缩放撑满、圆外按通道裁切、圆内像素原样保留，输出 128x128 成品到 技能图标/合成成品/<角色>/。原图圆大小不一也会被拉到统一尺寸，不需要手工给缩放比例。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "character": {
+            "type": "string",
+            "description": "角色名，对应 角色原图/ 下的文件夹名，也是 skill_characters.json 里的 key。"
+          },
+          "project_dir": {
+            "type": "string",
+            "description": "项目根目录绝对路径。不传则用当前工作目录。"
+          },
+          "overscan_px": {
+            "type": "number",
+            "description": "过冲像素数，默认 1.0。原图圆边缘有一圈羽化过渡，多放大这么多像素把它推到通道圆外裁掉，避免成品圆周留白边。还有白边就调到 1.5~2.0；超过 2.5 会把画面内部亮光效拉到边缘反而更亮。"
+          }
+        },
+        "required": ["character"]
+      }
+    },
+    {
+      "name": "composite_buff_icons",
+      "description": "Buff/Debuff 图标合成：把 Buff-Debuff/角色原图/<角色>/ 的白色符号图合成到底色/金框卡片上，自动避开描边金框、自动找不压边的缩放和居中位置，输出到 Buff-Debuff/合成成品/<角色>/ 并附预览联系表。底色和箭头角标的映射需要先写进 合成脚本/characters.json。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "project_dir": {
+            "type": "string",
+            "description": "项目根目录绝对路径。不传则用当前工作目录。"
+          }
+        }
+      }
+    },
+    {
+      "name": "generate_comparison_chart",
+      "description": "生成图文对照表：把技能图标和 Buff/Debuff 成品按 图文技能对照表/labels/<角色>.json 里的顺序和中文标签排成一张核对图，输出到 图文技能对照表/<角色>/。会报告缺图数量。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "character": {
+            "type": "string",
+            "description": "角色名，需要 labels/<角色>.json 已存在。"
+          },
+          "project_dir": {
+            "type": "string",
+            "description": "项目根目录绝对路径。不传则用当前工作目录。"
+          }
+        },
+        "required": ["character"]
+      }
+    },
+    {
+      "name": "package_character",
+      "description": "汇总打包：把技能图标、Buff/Debuff、图文对照表三处的成品复制到 最终输出/<角色>/ 平铺交付。只复制不重新生成，所以要先跑完前面的生成步骤。注意它不清空目标目录，改过命名规则的话旧文件需要手工删。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "character": {
+            "type": "string",
+            "description": "角色名。"
+          },
+          "project_dir": {
+            "type": "string",
+            "description": "项目根目录绝对路径。不传则用当前工作目录。"
+          }
+        },
+        "required": ["character"]
+      }
+    }
+  ],
+  "sessionContext": true,
+  "node": {
+    "entry": "node/worker.cjs",
+    "protocol": "json-rpc-stdio",
+    "lifecycle": "on-demand",
+    "idleTimeoutSeconds": 120
+  }
+}

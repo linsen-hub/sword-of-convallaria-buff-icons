@@ -8,6 +8,15 @@
 !/.gitignore
 !/.claude
 !/工具使用说明.md
+!/cindy插件源码
+
+# Python 缓存，任何位置都不进版本控制
+__pycache__/
+*.pyc
+
+# ---- cindy 插件源码 ----
+# 打包产物（.cindy 是 zip 包，每次打包都会重新生成，不进版本控制）
+/cindy插件源码/**/*.cindy
 
 # ---- Buff-Debuff ----
 # PSD 源文件体积太大（单个 100MB+），不进版本控制；本地保留即可
