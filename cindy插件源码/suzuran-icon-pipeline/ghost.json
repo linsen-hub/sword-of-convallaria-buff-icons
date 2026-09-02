@@ -5,7 +5,7 @@
   "name": "铃兰图标流水线",
   "description": "铃兰之剑角色图标流水线：技能图标规范化、Buff/Debuff 合成、图文对照表、汇总打包。",
   "whenToUse": "需要把角色原图做成游戏图标时使用：技能/个性图标规范化成 128x128 圆形成品、Buff/Debuff 符号合成到底图卡片、生成图文对照表核对、把三者产物汇总打包交付。也用于排查成品圆大小不一或圆周白边。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "kind": "chip",
   "entry": "main.js",
   "icon": "assets/icon.png",

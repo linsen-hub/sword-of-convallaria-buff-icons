@@ -32,7 +32,13 @@ function runProcess(cmd, args, options = {}) {
   return new Promise((resolve) => {
     let child;
     try {
-      child = spawn(cmd, args, { cwd: options.cwd, windowsHide: true });
+      child = spawn(cmd, args, {
+        cwd: options.cwd,
+        windowsHide: true,
+        // Windows 下 Python 的 stdout 默认走 GBK，脚本日志里的中文会变成乱码。
+        // 强制 UTF-8 输出，这样下面按 utf8 解码才对得上。
+        env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+      });
     } catch (err) {
       resolve({ code: -1, stdout: '', stderr: String(err && err.message || err), spawnFailed: true });
       return;
